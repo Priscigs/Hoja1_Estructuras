@@ -74,7 +74,7 @@ public class CharacterMaze {
 			}
 		}
 		
-		if(xSegunda == 422 && ySegunda == 255) {//475, 335  422, 255
+		if(xSegunda == 422 && ySegunda == 255) {
 			Laberinto.niveles();
 			x = 20;
 			y = 20;
