@@ -53,7 +53,15 @@ public class Juegos extends JFrame {
 		btnRompecabezas.setBounds(144, 78, 158, 39);
 		contentPane.add(btnRompecabezas);
 		
+		Maze lab = new Maze();
+		
 		JButton btnLaberinto = new JButton("Laberinto");
+		btnLaberinto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lab.setVisible(true);
+				dispose();
+			}
+		});
 		btnLaberinto.setBounds(144, 127, 158, 39);
 		contentPane.add(btnLaberinto);
 		
