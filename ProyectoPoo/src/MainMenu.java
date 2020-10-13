@@ -42,6 +42,10 @@ public class MainMenu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnCrear = new JButton("Crear Cuenta");
+		btnCrear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCrear.setBounds(152, 79, 121, 35);
 		contentPane.add(btnCrear);
 		

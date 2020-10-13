@@ -6,15 +6,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class InicioSesion extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtUser;
+	private JPasswordField txtContra;
 
 	/**
 	 * Launch the application.
@@ -43,15 +48,10 @@ public class InicioSesion extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(188, 57, 96, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(188, 103, 96, 19);
-		contentPane.add(textField_1);
+		txtUser = new JTextField();
+		txtUser.setBounds(188, 57, 96, 19);
+		contentPane.add(txtUser);
+		txtUser.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Usuario");
 		lblNewLabel.setBounds(65, 60, 45, 13);
@@ -66,8 +66,42 @@ public class InicioSesion extends JFrame {
 		JButton btnInicio = new JButton("Iniciar Sesi\u00F3n");
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jM.setVisible(true);
-				dispose();
+				
+				//Instanciar fecha
+				Date fecha = new Date();
+				DateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				
+				//Instancias usuarios y sqlusuarios
+				SQLUsuarios sqlU = new SQLUsuarios();
+				Usuarios u = new Usuarios();
+				
+				//convierto en String la contraseña
+				String contra = new String(txtContra.getPassword());
+				
+				//Verificación de datos
+				if(!txtUser.getText().equals("") && !contra.equals("")) {
+					//String newP = Cifrado.sha1(contra);
+					u.setUser(txtUser.getText());
+					u.setPassword(contra);
+					u.setSesion(formato.format(fecha));
+					
+					//Se abre la nueva pestaña en caso que sea correcto el login
+					if(sqlU.inicioSesion(u)) {
+						jM.setVisible(true);
+						dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Datos incorrectos, intente de nuevo");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Llenar los campos por favor");
+
+				}
+				
+				//Borrar datos
+				txtUser.setText(null);
+				txtContra.setText(null);
 			}
 		});
 		btnInicio.setBounds(81, 191, 108, 29);
@@ -81,6 +115,10 @@ public class InicioSesion extends JFrame {
 		});
 		btnSalir.setBounds(245, 191, 108, 29);
 		contentPane.add(btnSalir);
+		
+		txtContra = new JPasswordField();
+		txtContra.setBounds(188, 103, 96, 19);
+		contentPane.add(txtContra);
 	}
 
 }
