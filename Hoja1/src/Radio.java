@@ -2,7 +2,7 @@
 public class Radio implements Interface{
 	
 	public boolean encenderApagar() {
-		return true;
+		return false;
 	}
 	
 	public boolean amFm() {
