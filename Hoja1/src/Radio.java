@@ -6,7 +6,7 @@ public class Radio implements Interface{
 	}
 	
 	public boolean amFm() {
-		return true;
+		return false;
 	}
 	
 	public String guardar(int btn) {
