@@ -7,7 +7,7 @@ class seleccionarTest {
 	@Test
 	void test() {
 		Radio radio = new Radio();
-		String output = radio.seleccionar(3);
+		String output = radio.seleccionar(7);
 		assertEquals("Emisora seleccionada", output);
 	}
 

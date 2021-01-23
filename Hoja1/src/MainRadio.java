@@ -19,7 +19,7 @@ public class MainRadio {
 		
 		Radio radio = new Radio();
 		
-		System.out.println("\n****RADIO****" + 
+		System.out.println("\n***RADIO***" + 
 				"\n1. Encendido/Apagado" + 
 				"\n2. Salir"); 
 		opc = scanInt.nextInt();

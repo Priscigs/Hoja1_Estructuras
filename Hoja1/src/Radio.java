@@ -38,7 +38,7 @@ public class Radio implements Interface{
 	}
 	
 	/**
-	 * @return true si está encendido, false si está apagado
+	 * @return true si está encendido, false si está apagado.
 	 */
 	public boolean encenderApagar() {
 		int on = 1;
